@@ -24,8 +24,9 @@ RSpec.describe AmusementPark, type: :model do
       MechanicRide.create!(ride_id: @scrambler.id, mechanic_id: @kyle.id)
       MechanicRide.create!(ride_id: @ferris.id, mechanic_id: @kyle.id)
 
-      # This method returns a uniuqe list of mechanics working on rides within the park
+      # This method returns a uniuqe list of mechanics working on rides within the designated park
       expect(@six_flags.unique_mechanics).to eq([@dave, @barbara, @kyle])
+      expect(@six_flags.unique_mechanics).not_to include(@bob)
     end
   end
 end
