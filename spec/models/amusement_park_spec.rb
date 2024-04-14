@@ -15,6 +15,7 @@ RSpec.describe AmusementPark, type: :model do
       @dave = Mechanic.create!(name: "Dave Williams", years_experience: 30)
       @barbara = Mechanic.create!(name: "Barbara Jones", years_experience: 15)
       @kyle = Mechanic.create!(name: "Kyle Smith", years_experience: 22)
+      @bob = Mechanic.create!(name: "Bob Randall", years_experience: 65)
       MechanicRide.create!(ride_id: @hurler.id, mechanic_id: @dave.id)
       MechanicRide.create!(ride_id: @scrambler.id, mechanic_id: @dave.id)
       MechanicRide.create!(ride_id: @ferris.id, mechanic_id: @dave.id)
@@ -23,6 +24,7 @@ RSpec.describe AmusementPark, type: :model do
       MechanicRide.create!(ride_id: @scrambler.id, mechanic_id: @kyle.id)
       MechanicRide.create!(ride_id: @ferris.id, mechanic_id: @kyle.id)
 
+      # This method returns a uniuqe list of mechanics working on rides within the park
       expect(@six_flags.unique_mechanics).to eq([@dave, @barbara, @kyle])
     end
   end
