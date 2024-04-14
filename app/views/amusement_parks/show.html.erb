@@ -1,0 +1,16 @@
+<section class="park_info">
+  <h1> <%= @park.name %> Show Page </h1>
+  <p> Admission Cost: $<%= @park.admission_cost %> </p>
+</section>
+
+<section class="park_mechanics">
+  <h1> All Mechanics Working at <%= @park.name %> </h1>
+
+
+  <ul>
+    <% @park.unique_mechanics.each do |mechanic| %>
+      <li><p> <%= mechanic.name %> </p></li>
+    <% end %>
+  </ul>
+
+</section>
