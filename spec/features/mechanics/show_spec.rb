@@ -6,9 +6,9 @@ RSpec.describe "Mechanics show spec" do
     @ride1 = @park1.rides.create!(name: "Tower", thrill_rating: 8, open: true)
     @ride2 = @park1.rides.create!(name: "Doom", thrill_rating: 8, open: false)
     @mechanic1 = @ride1.mechanics.create!(name: "Martin", years_experience: 10)
-    @mechanic2 = @ride1.mechacnics.create!(name: "Rodrigo", years_experience: 9)
+    @mechanic2 = @ride1.mechanics.create!(name: "Rodrigo", years_experience: 9)
 
-    @ride_mechanic1 = MechanicRide.create(ride_id: 1, mechanic_id:)
+    MechanicRide.create!(ride_id: @ride2.id, mechanic_id: @mechanic1.id)
   end
 
   describe '#us 1' do
@@ -20,6 +20,8 @@ RSpec.describe "Mechanics show spec" do
       # I see their name, years of experience, and the names of all rides they are working on.
       expect(page).to have_content("Name: Martin")
       expect(page).to have_content("Experience: 10")
+      expect(page).to have_content("Tower")
+      expect(page).to have_content("Doom")
 
     end
   end
