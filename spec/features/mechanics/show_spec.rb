@@ -45,7 +45,7 @@ RSpec.describe "the mechanics show page" do
         expect(page).to have_field(:ride_id)
 
         fill_in(:ride_id, with: "#{@ride3.id}")
-        click_button('Save')
+        click_button('Submit')
       end
 
       expect(current_path).to eq(mechanic_path(@mechanic1))
