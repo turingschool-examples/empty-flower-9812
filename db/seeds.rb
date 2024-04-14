@@ -12,6 +12,7 @@ Ride.destroy_all
 @hurler = @six_flags.rides.create!(name: 'The Hurler', thrill_rating: 7, open: true)
 @scrambler = @six_flags.rides.create!(name: 'The Scrambler', thrill_rating: 4, open: true)
 @ferris = @six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
+@insane = @six_flags.rides.create!(name: 'Insane-o-Rama', thrill_rating: 10, open: false)
 
 @universal = AmusementPark.create!(name: 'Universal Studios', admission_cost: 80)
 @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
@@ -25,12 +26,15 @@ Ride.destroy_all
 MechanicRide.create!(ride_id: @hurler.id, mechanic_id: @dave.id)
 MechanicRide.create!(ride_id: @scrambler.id, mechanic_id: @dave.id)
 MechanicRide.create!(ride_id: @jaws.id, mechanic_id: @dave.id)
+MechanicRide.create!(ride_id: @crazy.id, mechanic_id: @dave.id)
 
 MechanicRide.create!(ride_id: @hurler.id, mechanic_id: @barbara.id)
 MechanicRide.create!(ride_id: @ferris.id, mechanic_id: @barbara.id)
+MechanicRide.create!(ride_id: @insane.id, mechanic_id: @barbara.id)
 MechanicRide.create!(ride_id: @crazy.id, mechanic_id: @barbara.id)
 
 MechanicRide.create!(ride_id: @hurler.id, mechanic_id: @kyle.id)
+MechanicRide.create!(ride_id: @insane.id, mechanic_id: @kyle.id)
 MechanicRide.create!(ride_id: @wild.id, mechanic_id: @kyle.id)
 MechanicRide.create!(ride_id: @crazy.id, mechanic_id: @kyle.id)
 
