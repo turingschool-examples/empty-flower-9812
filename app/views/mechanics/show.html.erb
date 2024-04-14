@@ -13,3 +13,13 @@
     <% end %>
   </ul>
 </section>
+
+<section class="new_ride">
+  <h1> Add a Ride for <%= @mechanic.name %> </h1>
+    <%= form_with url: "/mechanics/#{@mechanic.id}/rides", method: :post, data: {turbo: false} do |form| %>
+      <%= form.label :ride_id, "Add Ride by ID" %>
+      <%= form.text_field :ride_id %>
+      <%= form.submit "Submit" %> 
+    <% end %>
+
+</section>

@@ -16,7 +16,7 @@ Ride.destroy_all
 @universal = AmusementPark.create!(name: 'Universal Studios', admission_cost: 80)
 @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
 @wild = @universal.rides.create!(name: 'Wild', thrill_rating: 9, open: true)
-@crazy = @universal.rides.create!(name: 'crazy', thrill_rating: 10, open: true)
+@crazy = @universal.rides.create!(name: 'Crazy', thrill_rating: 10, open: true)
 
 @dave = Mechanic.create!(name: "Dave Williams", years_experience: 30)
 @barbara = Mechanic.create!(name: "Barbara Jones", years_experience: 15)
