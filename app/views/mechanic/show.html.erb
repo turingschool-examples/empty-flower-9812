@@ -4,7 +4,10 @@
 <p>Experience: <%= @mechanic.years_experience %></p>
 
 
-  <p> Rides:</p>
-  <% @mechanic.rides.each do|ride| %>
-    <p> <%= ride.name %></p>
-  <% end %>
+<p> Rides:</p>
+<% @mechanic.rides.each do|ride| %>
+  <p> <%= ride.name %></p>
+<% end %>
+
+<%= link_to 'Add Ride', "/mechanic/#{@mechanic.id}/new" , method: :get %>
+
