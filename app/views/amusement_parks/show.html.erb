@@ -1,0 +1,7 @@
+<h1>Amusment Park</h1>
+  <%= @amusement_park.name %>
+  <%= @amusement_park.admission_cost %>
+
+<% @amusement_park.rides.each do |ride| %>
+  <%= ride.mechanic_to_ride %>
+<% end %>
