@@ -30,5 +30,22 @@ RSpec.describe AmusementPark, type: :model do
         expect(list_of_mechanics).to eq([@mechanic1, @mechanic3])
       end
     end
+
+    describe '#rides_by_avg_mechanic_experience' do
+      it 'returns a list of all its rides ordered by average mechanic experience and also has access to each rides average mechanic experience' do
+        mechanic4 = Mechanic.create!(name: 'Fourth Mechanic', years_experience: 3)
+        mechanic4.rides << @ride2
+        @mechanic2.rides << @ride2
+        @mechanic3.rides << @ride2
+
+        list_of_rides = @park1.rides_by_avg_mechanic_experience
+
+        expect(list_of_rides).to eq([@ride3, @ride1, @ride2])
+
+        expect(list_of_rides.first.average_experience.round).to eq(19)
+        expect(list_of_rides.second.average_experience.round).to eq(10)
+        expect(list_of_rides.last.average_experience.round).to eq(9)
+      end
+    end
   end
 end

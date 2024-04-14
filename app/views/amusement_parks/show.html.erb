@@ -8,3 +8,9 @@
     <p><%= mechanic.name %></p>
   <% end %>
 </div>
+
+<div id="park_rides">
+  <% @park.rides_by_avg_mechanic_experience.each do |ride| %>
+    <p><%= ride.average_experience.round(2) %> years of mechanic experience on <%= ride.name %></p>
+  <% end %>
+</div>
