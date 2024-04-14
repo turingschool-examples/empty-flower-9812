@@ -1,0 +1,21 @@
+<h1><%= @mechanic.name %></h1>
+<p>Years of Experience: <%= @mechanic.years_experience %></p>
+
+<section class="rides">
+  <h2>Rides they are working on:</h2>
+  <ul>
+    <% @rides.each do |ride| %>
+      <li><%= ride.name %></li>
+    <% end %>
+  </ul>
+</section>
+
+<p>Add Ride</p>
+
+<%= form_with(url: mechanic_rides_path(@mechanic), method: :post) do |form| %>
+
+  <%= form.label :ride_id %>
+  <%= form.text_field :ride_id %>
+
+  <%= form.submit "Submit" %>
+<% end %>
