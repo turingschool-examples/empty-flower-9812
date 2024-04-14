@@ -22,6 +22,7 @@ Ride.destroy_all
 @dave = Mechanic.create!(name: "Dave Williams", years_experience: 30)
 @barbara = Mechanic.create!(name: "Barbara Jones", years_experience: 15)
 @kyle = Mechanic.create!(name: "Kyle Smith", years_experience: 22)
+@bob = Mechanic.create!(name: "Bob Randall", years_experience: 65)
 
 MechanicRide.create!(ride_id: @hurler.id, mechanic_id: @dave.id)
 MechanicRide.create!(ride_id: @scrambler.id, mechanic_id: @dave.id)
@@ -37,5 +38,8 @@ MechanicRide.create!(ride_id: @hurler.id, mechanic_id: @kyle.id)
 MechanicRide.create!(ride_id: @insane.id, mechanic_id: @kyle.id)
 MechanicRide.create!(ride_id: @wild.id, mechanic_id: @kyle.id)
 MechanicRide.create!(ride_id: @crazy.id, mechanic_id: @kyle.id)
+
+MechanicRide.create!(ride_id: @insane.id, mechanic_id: @bob.id)
+MechanicRide.create!(ride_id: @ferris.id, mechanic_id: @bob.id)
 
 puts "Seeded Successfully"
