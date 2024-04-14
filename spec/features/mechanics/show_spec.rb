@@ -14,17 +14,21 @@ RSpec.describe "mechanics show page" do
     MechanicRide.create!(ride_id: @scrambler.id, mechanic_id: @dave.id)
     MechanicRide.create!(ride_id: @ferris.id, mechanic_id: @dave.id)
 
-
     # As a user, when I visit a mechanic show page
     visit "/mechanics/#{@dave.id}"
 
     # I see their name, years of experience, and the names of all rides they are working on.
-    within "mechanic_info" do
+    within ".mechanic_info" do
       expect(page).to have_content("#{@dave.name}")
       expect(page).to have_content("#{@dave.years_experience}")
     end
 
     # Add Rides currently being worked on
+    within ".mechanic_rides" do
+      expect(page).to have_content("#{@hurler.name}")
+      expect(page).to have_content("#{@scrambler.name}")
+      expect(page).to have_content("#{@ferris.name}")
+    end
   end
 
 end
