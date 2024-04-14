@@ -7,7 +7,7 @@
   <h1> All Mechanics Working at <%= @park.name %> </h1>
   <ul>
     <% @park.unique_mechanics.each do |mechanic| %>
-      <li><p> <%= mechanic.name %> </p></li>
+      <li> <%= link_to "#{mechanic.name}", "/mechanics/#{mechanic.id}", data: {turbo_method: :get} %> </li>
     <% end %>
   </ul>
 </section>
