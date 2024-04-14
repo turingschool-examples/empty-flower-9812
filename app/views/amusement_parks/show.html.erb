@@ -1,5 +1,5 @@
 <section class="park_info">
-  <h1> <%= @park.name %> Show Page </h1>
+  <h1> <%= @park.name %> Amusement Park </h1>
   <p> Admission Cost: $<%= @park.admission_cost %> </p>
 </section>
 
@@ -7,7 +7,7 @@
   <h1> All Mechanics Working at <%= @park.name %> </h1>
   <ul>
     <% @park.unique_mechanics.each do |mechanic| %>
-      <li> <%= link_to "#{mechanic.name}", "/mechanics/#{mechanic.id}", data: {turbo_method: :get} %> </li>
+      <li> <%= link_to "#{mechanic.name}", "/mechanics/#{mechanic.id}", data: {turbo_method: :get} %> </li><br>
     <% end %>
   </ul>
 </section>
