@@ -14,12 +14,10 @@ RSpec.describe "the mechanic show" do
   it "displays the name, years of experience and all rides the mechanic works on" do
     visit mechanic_path(@mechanic1)
     
-    within "mechanic-#{@mechanic1.id}" do
+    within "#mechanic-#{@mechanic1.id}" do
       expect(page).to have_content("Name: #{@mechanic1.name}")
-      expect(page).to have_content("Experience: #{@mechanic1.name} years")
-    end
-
-    within "mechanic-#{@mechanic1.id} rides" do
+      expect(page).to have_content("Experience: #{@mechanic1.years} years")
+      
       expect(page).to have_content("#{@ride1.name}")
       expect(page).to have_content("#{@ride2.name}")
       expect(page).to_not have_content("#{@ride3.name}")
