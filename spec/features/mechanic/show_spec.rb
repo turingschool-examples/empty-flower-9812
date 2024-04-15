@@ -1,15 +1,28 @@
 require "rails_helper"
 
-RSpec.describe "the movie show" do
+RSpec.describe "the mechanic show" do
   before(:each) do
-    @mechanic1 = Mechanic.create!(name: "Tom", )
+    @mechanic1 = Mechanic.create!(name: "Tom", years: 20)
+    @park1 = AmusementPark.create!(name: "Six Flags", admission_cost: 50)
+    @ride1 = @park1.rides.create!(name: "Twister", thrill_rating: 10, open: true)
+    @ride2 = @park1.rides.create!(name: "Teapots", thrill_rating: 2, open: true)
+    @ride3 = @park1.rides.create!(name: "Jumper", thrill_rating: 5, open: true)
+
+    @mechanic1.rides << [@ride1, @ride2]
   end
 
   it "displays the name, years of experience and all rides the mechanic works on" do
-    visit mechanic_path()
+    visit mechanic_path(@mechanic1)
+    
+    within "mechanic-#{@mechanic1.id}" do
+      expect(page).to have_content("Name: #{@mechanic1.name}")
+      expect(page).to have_content("Experience: #{@mechanic1.name} years")
+    end
 
-    # As a user,
-    # When I visit a mechanic show page
-    # I see their name, years of experience, and the names of all rides they are working on.
+    within "mechanic-#{@mechanic1.id} rides" do
+      expect(page).to have_content("#{@ride1.name}")
+      expect(page).to have_content("#{@ride2.name}")
+      expect(page).to_not have_content("#{@ride3.name}")
+    end
   end
 end
