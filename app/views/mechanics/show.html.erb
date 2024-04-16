@@ -1,0 +1,14 @@
+<div class="show-container">
+  <div class="show-header"><%= @mechanic.name %></div>
+  <div class="show-information">Years of experience: <%= @mechanic.years_experience %></div>
+  <div class="show-information">
+    <div class="show-information-header">Rides this mechanic is working on:</div>
+    <ol>
+      <% @mechanic.rides.each do |ride| %>
+        <li>
+          <%= ride.name %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>
