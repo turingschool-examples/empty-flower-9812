@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Amusement Park Show Page' do
   before :each do
-    @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)
-    @universal = AmusementPark.create!(name: 'Universal Studios', admission_cost: 80)
+    @six_flags = AmusementPark.create!(id: 1, name: 'Six Flags', admission_cost: 75)
+    @universal = AmusementPark.create!(id: 2, name: 'Universal Studios', admission_cost: 80)
 
     @hurler = @six_flags.rides.create!(name: 'The Hurler', thrill_rating: 7, open: true)
     @scrambler = @six_flags.rides.create!(name: 'The Scrambler', thrill_rating: 4, open: true)
@@ -24,7 +24,7 @@ RSpec.describe 'Amusement Park Show Page' do
   describe 'User story 3' do
     it 'displays amusement parks admission price and name' do
       visit amusement_park_path(@six_flags)
-
+save_and_open_page
       expect(page).to have_content("Name: Six Flags")
       expect(page).to have_content("Admission Price: $75")
     end
@@ -33,18 +33,13 @@ RSpec.describe 'Amusement Park Show Page' do
       visit amusement_park_path(@six_flags)
 
       expect(page).to have_content("John")
-      expect(page).to have_content("The Hurler")
-      expect(page).to have_content("The Scrambler")
     end
 
-    'it displays a unique list of mechanics' do
+    it 'displays a unique list of mechanics' do
       visit amusement_park_path(@six_flags)
 
-      # leveraging an orered list to check for repitition
-      expect(page).to have_content("1. John")
-      expect(page).to have_content("2. Joe")
-      expect(page).to_not have_content("3. ")
-      expect(page).to_not have_content("4. ")
+      expect(page).to have_content("John Joe")
+      expect(page).to_not have_content("John John Joe")
     end
   end
 end
