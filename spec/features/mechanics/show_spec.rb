@@ -22,6 +22,12 @@ RSpec.describe "Mechanics Show Page" do
       open: true,
       amusement_park: @elitches
     )
+    @ride3 = Ride.create!(
+      name: "Sidewinder",
+      thrill_rating: 7,
+      open: true,
+      amusement_park: @elitches
+    )
     @ride1.mechanics << @mechanic
     @ride2.mechanics << @mechanic
   end
@@ -34,5 +40,28 @@ RSpec.describe "Mechanics Show Page" do
     expect(page).to have_content("Rides this mechanic is working on:")
     expect(page).to have_content(@ride1.name)
     expect(page).to have_content(@ride2.name)
+  end
+
+  it "has a form to add a new ride to the mechanic" do
+    visit "/mechanics/#{@mechanic.id}"
+
+    within "form" do
+      expect(page).to have_content("Add a ride to workload:")
+      expect(page).to have_field("ride_id")
+      expect(page).to have_button("submit")
+    end
+  end
+
+  it "can add a new ride to the mechanic" do
+    visit "/mechanics/#{@mechanic.id}"
+
+    fill_in("ride_id", with: @ride3.id)
+    click_button("submit")
+
+    expect(page).to have_current_path("/mechanics/#{@mechanic.id}")
+
+    within "#mechanic-rides" do
+      expect(page).to have_content(@ride3.name)
+    end
   end
 end
