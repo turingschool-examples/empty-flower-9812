@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Mechanic Invoice Show Page' do
+RSpec.describe 'Mechanic Show Page' do
   before :each do
     @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)
     @universal = AmusementPark.create!(name: 'Universal Studios', admission_cost: 80)
