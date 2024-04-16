@@ -30,4 +30,31 @@ RSpec.describe 'Mechanic Invoice Show Page' do
       expect(page).to have_content("Years Experience: 8")
     end
   end
+
+  describe 'User story 2' do
+    it 'has a form  to add a ride' do
+      visit mechanic_path(@joe)
+
+      expect(page).to have_field('ID')
+    end
+
+    it 'can add a ride to a mechanic' do
+      visit mechanic_path(@joe)
+
+      fill_in 'ID', with: "#{@scrambler.id}"
+      click_on 'Submit'
+
+      expect(page).to have_content("Scrambler")
+      expect(@joe.rides).to include(@scrambler)
+    end
+
+    it 'redirects with updated info on show page after submission' do
+      visit mechanic_path(@joe))
+
+      fill_in 'ID', with: "#{@scrambler.id}"
+      click_on 'Submit'
+
+      expect(current_path).to eq(mechanic_path(@joe))
+    end
+  end
 end
