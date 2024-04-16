@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   resources(
     :ride_mechanics, controller: "ride_mechanics", only: %i[create]
   )
+
+  resources(
+    :amusement_parks, controller: "amusement_parks", only: %i[show]
+  )
 end
