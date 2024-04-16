@@ -1,5 +1,11 @@
 <%= @mechanic.name %>
 <%= @mechanic.years_experience %>
 <% @mechanic.rides.each do |ride| %>
-  <% ride.name %>
+  <%= ride.name %>
+<% end %>
+
+<%= form_with url: "/mechanics/#{@mechanic.id}/rides", method: :post, data: {turbo: false} do |f| %>
+  <%= f.label "Ride ID"  %>
+  <%= f.text_field :ride_id  %>
+  <%= f.submit "Add Ride"  %>
 <% end %>

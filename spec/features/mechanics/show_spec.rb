@@ -26,12 +26,33 @@ RSpec.describe "Mechanics Show Page", type: :feature do
 
   describe "User Story 1" do
     it "shows name, years of experience, and the names of all rides they are working on" do
-      visit "/mechanic/#{@jb.id}"
+      visit "/mechanics/#{@jb.id}"
 
       expect(page).to have_content("#{@jb.name}")
       expect(page).to have_content("#{@jb.years_experience}")
       expect(page).to have_content("#{@hurler.name}")
       expect(page).to have_content("#{@jaws.name}")
+    end
+  end
+
+  describe "User Story 2" do
+    it "displays a form to add a ride to the mechanic's page with given id" do
+      visit "/mechanics/#{@bt.id}"
+
+      expect(page).to have_field(:ride_id)
+      expect(page).to have_button("Add Ride")
+    end
+
+    it "should allow user to add a ride via the form on the show page" do
+      visit "/mechanics/#{@bt.id}"
+
+      expect(page).to_not have_content(@hurler.name)
+
+      fill_in :ride_id, with: @hurler.id
+      click_button "Add Ride"
+
+      expect(current_path).to eq("/mechanics/#{@bt.id}")
+      expect(page).to have_content(@hurler.name)
     end
   end
 end
