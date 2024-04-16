@@ -3,9 +3,16 @@
 <p>Name: <%= @mechanic.name %></p>
 <p>Years Experience: <%= @mechanic.years_experience %></p>
 
-<p><h1>Rides Worked On:</h1></p>
+<p><h3>Rides Worked On:</h3></p>
 <ol>
   <% @rides.each do |ride| %>
     <li><%= ride.name %></li>
   <% end %>
 </ol>
+
+<p><h3>Add Ride to this Mechanic:</h3></p>
+<%= form_with url: mechanic_path(@mechanic), method: :patch, local: true, data: { turbo: false }  do |f| %>
+  <%= f.label :ride_id, "Ride ID:" %>
+  <%= f.text_field :ride_id %>
+  <%= f.submit 'Submit' %>
+<% end %>

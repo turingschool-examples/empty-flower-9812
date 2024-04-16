@@ -35,13 +35,13 @@ RSpec.describe 'Mechanic Invoice Show Page' do
     it 'has a form  to add a ride' do
       visit mechanic_path(@joe)
 
-      expect(page).to have_field('ID')
+      expect(page).to have_field('Ride ID')
     end
 
     it 'can add a ride to a mechanic' do
       visit mechanic_path(@joe)
 
-      fill_in 'ID', with: "#{@scrambler.id}"
+      fill_in 'Ride ID', with: @scrambler.id
       click_on 'Submit'
 
       expect(page).to have_content("Scrambler")
@@ -49,9 +49,9 @@ RSpec.describe 'Mechanic Invoice Show Page' do
     end
 
     it 'redirects with updated info on show page after submission' do
-      visit mechanic_path(@joe))
+      visit mechanic_path(@joe)
 
-      fill_in 'ID', with: "#{@scrambler.id}"
+      fill_in 'ID', with: @scrambler.id
       click_on 'Submit'
 
       expect(current_path).to eq(mechanic_path(@joe))

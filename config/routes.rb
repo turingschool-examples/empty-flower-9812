@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :mechanics, only: [:show]
+  resources :mechanics, only: [:show, :update]
 end
