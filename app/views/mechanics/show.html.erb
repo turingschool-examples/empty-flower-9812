@@ -6,8 +6,18 @@
   <ol>
     <% @mechanic.rides.each do |ride| %>
     <li>
-    <h3>Ride name: <%= ride.name %></h3>
+      <h3>Ride name: <%= ride.name %></h3>
     </li>
     <%end%>
   </ol>
 </section>
+
+<h2>Add existing ride to <%=@mechanic.name%> workload</h2>
+  <section class='addride'>
+    <%=form_with model: [@ride, @mechanic], local: true do |form|%>
+    <%= form.label :ride_id, "Ride Id:" %>
+    <%= form.text_field :ride_id %>
+
+    <%= form.submit "Add ride" %>
+    <%end%>
+  </section>
