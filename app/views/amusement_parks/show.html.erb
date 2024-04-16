@@ -1,0 +1,13 @@
+<h1><%= @amusement_park.name %></h1>
+<h3>Admission cost: <%= @amusement_park.admission_cost %></h3>
+
+<h2>Park Mechanics</h2>
+<section class='mechanics'>
+  <ol>
+    <% @amusement_park.unique_name.each do |mechanic| %>
+    <li>
+      <h3>Mechanic name: <%= mechanic %></h3>
+    </li>
+    <%end%>
+  </ol>
+</section>
