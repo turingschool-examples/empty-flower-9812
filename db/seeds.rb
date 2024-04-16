@@ -16,3 +16,11 @@ Ride.destroy_all
 @ferris = @six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
 
 @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
+
+@john = Mechanic.create!(name: 'John', years_experience: 5)
+@joe = Mechanic.create!(name: 'Joe', years_experience: 8)
+
+@john.rides << @hurler
+@john.rides << @scrambler
+@joe.rides << @ferris
+@joe.rides << @jaws
