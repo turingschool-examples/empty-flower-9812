@@ -3,7 +3,7 @@
   <div class="show-information">Years of experience: <%= @mechanic.years_experience %></div>
   <div class="show-information">
     <div class="show-information-header">Rides this mechanic is working on:</div>
-    <ol>
+    <ol id="mechanic-rides">
       <% @mechanic.rides.each do |ride| %>
         <li>
           <%= ride.name %>
@@ -11,4 +11,11 @@
       <% end %>
     </ol>
   </div>
+  <%= form_with url: "/ride_mechanics", method: :post, class: "add-ride-form" do |form| %>
+    <div class="form-header">Add a ride to workload:</div>
+    <%= form.label :ride_id, "Ride ID: " %>
+    <%= form.text_field :ride_id %>
+    <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
+    <%= form.submit "submit" %>
+  <% end %>
 </div>

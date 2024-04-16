@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   resources(
     :mechanics, controller: "mechanics", only: %i[show]
   )
+
+  resources(
+    :ride_mechanics, controller: "ride_mechanics", only: %i[create]
+  )
 end
