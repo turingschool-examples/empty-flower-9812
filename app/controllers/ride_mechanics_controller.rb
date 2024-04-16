@@ -2,9 +2,7 @@ class RideMechanicsController < ApplicationController
   def create
     ride_mechanic = RideMechanic.new(create_ride_mechanic_params)
 
-    if params[:ride_id].nil?
-      flash[:alert] = "You did not provide a valid ride id."
-    elsif !ride_mechanic.save
+    if !ride_mechanic.save
       flash[:alert] = "Error: #{ride_mechanic.errors.full_messages}"
     else
       flash[:alert] =

@@ -60,8 +60,28 @@ RSpec.describe "Mechanics Show Page" do
 
     expect(page).to have_current_path("/mechanics/#{@mechanic.id}")
 
+    expect(page).to have_content(
+      "You have successfully added a ride to this mechanic's workload."
+    )
+
     within "#mechanic-rides" do
       expect(page).to have_content(@ride3.name)
     end
+  end
+
+  it "requires a valid ride id" do
+    visit "/mechanics/#{@mechanic.id}"
+
+    fill_in("ride_id", with: "")
+    click_button("submit")
+
+    expect(page).to have_current_path("/mechanics/#{@mechanic.id}")
+    expect(page).to have_content("Ride must exist")
+
+    fill_in("ride_id", with: 0)
+    click_button("submit")
+
+    expect(page).to have_current_path("/mechanics/#{@mechanic.id}")
+    expect(page).to have_content("Ride must exist")
   end
 end
