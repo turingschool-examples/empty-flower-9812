@@ -10,6 +10,7 @@ RSpec.describe "Mechanics Show Page" do
     @ride2 = @mechanic1.rides.create!(name: "Dragon Hunter", thrill_rating: 6, open: false, amusement_park_id: @amusement_park.id)
     @ride3 = @mechanic2.rides.create!(name: "Twister", thrill_rating: 9, open: false, amusement_park_id: @amusement_park.id)
     @ride4 = @mechanic2.rides.create!(name: "Merchant of Death", thrill_rating: 10, open: false, amusement_park_id: @amusement_park.id)
+    @ride5 = Ride.create!(name: "Fun Time", thrill_rating: 2, open: false, amusement_park_id: @amusement_park.id)
   end
 
   describe 'User Story 1' do
@@ -31,6 +32,20 @@ RSpec.describe "Mechanics Show Page" do
 
       expect(page).to_not have_content(@ride3.name)
       expect(page).to_not have_content(@ride4.name)
+    end
+  end
+
+  describe 'User Story 2' do
+    it "can add a ride to a mechanic" do
+      visit mechanic_path(@mechanic1)
+
+      expect(page).to have_field("Ride ID")
+
+      fill_in "Ride ID:", with: @ride5.id
+      click_button "Add Ride"
+      expect(current_path).to eq(mechanic_path(@mechanic1))
+      
+      expect(page).to have_content(@ride5.name)
     end
   end
 end

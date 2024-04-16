@@ -1,7 +1,15 @@
-<h1><%= @mechanic.name %></h1>
-<p><%= @mechanic.years_experience %></p>
+<h1>Mechanic: <%= @mechanic.name %></h1>
+<p>Years of Experience: <%= @mechanic.years_experience %></p>
 
 <h3>Mechanic Current Rides</h3>
 <% @rides.each do |ride|%>
-  <%= ride.name %>
+  <%= ride.name %></br>
+<% end %>
+
+<h3>Add Ride To <%= @mechanic.name %> Workload</h3>
+<%= form_with url: mechanic_ride_path(@mechanic), method: :patch, data: { turbo: false } do |form| %>
+  <%= form.label :ride_id, "Ride ID:" %>
+  <%= form.text_field :ride_id %>
+  
+  <%= form.submit "Add Ride" %>
 <% end %>
