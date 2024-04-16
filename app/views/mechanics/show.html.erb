@@ -6,4 +6,12 @@
   <ul> <% @mechanic.rides.each do |ride| %>
     <li> <%= ride.name %> </li>
   <% end %> </ul>
+
+  <%= form_with url: "/mechanics/#{@mechanic.id}/rides", method: :post, data: {turbo: false} do |form| %>
+    <%= form.label "Add a new ride" %>
+    <%= form.text_area :ride_id %>
+    <%= form.submit "Submit" %>
+  <% end %>
 </div>
+
+

@@ -23,4 +23,26 @@ RSpec.describe "the mechanic show" do
       expect(page).to_not have_content("#{@ride3.name}")
     end
   end
+
+  it "displays a form to add a ride to their workload" do
+    visit mechanic_path(@mechanic1)
+
+    within "#mechanic-#{@mechanic1.id}" do
+      expect(page).to have_content("Add a new ride")
+      expect(page).to have_button("Submit")
+    end
+  end
+
+  it "can be filled in with a ride ID and submitted and you're returned to the show page with that ride present" do
+    visit mechanic_path(@mechanic1)
+
+    fill_in(:ride_id, with: "#{@ride3.id}")
+    click_button("Submit")
+
+    expect(current_path).to eq(mechanic_path(@mechanic1))
+
+    expect(page).to have_content("#{@ride1.name}")
+    expect(page).to have_content("#{@ride2.name}")
+    expect(page).to have_content("#{@ride3.name}")
+  end
 end
