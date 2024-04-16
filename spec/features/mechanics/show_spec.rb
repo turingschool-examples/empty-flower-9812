@@ -4,7 +4,7 @@ RSpec.describe "Mechanics Show Page" do
   before(:each) do
     @mechanic = Mechanic.create!(
       name: "Bill Wilson",
-      experience: 8
+      years_experience: 8
     )
     @ride1 = Ride.create!(
       name: "Mind Eraser",
