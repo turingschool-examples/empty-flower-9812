@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe AmusementPark, type: :model do
+RSpec.describe Mechanic, type: :model do
   before :each do
     @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)
     @universal = AmusementPark.create!(name: 'Universal Studios', admission_cost: 80)
@@ -11,23 +11,23 @@ RSpec.describe AmusementPark, type: :model do
 
     @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
 
-    @john = Mechanic.create!(id: 1, name: 'John', years_experience: 5)
-    @joe = Mechanic.create!(id: 2, name: 'Joe', years_experience: 8)
+    @john = Mechanic.create!(name: 'John', years_experience: 5)
+    @joe = Mechanic.create!(name: 'Joe', years_experience: 8)
 
-    @john.rides << @hurler #SF 
-    @john.rides << @scrambler #SF
-
-    @joe.rides << @ferris #SF
-    @joe.rides << @jaws #U
+    @john.rides << @hurler
+    @john.rides << @scrambler
+    @joe.rides << @ferris
+    @joe.rides << @jaws
   end
 
   describe "relationships" do
-    it { should have_many(:rides) }
-    it { should have_many(:mechanics) }
+    it { should have_many(:mechanic_rides) }
+    it { should have_many(:rides).through(:mechanic_rides) }
   end
 
-  it '#unique_list_of_mechanics' do
-    expect(@six_flags.unique_list_of_mechanics).to eq([@john, @joe])
-    expect(@universal.unique_list_of_mechanics).to eq([@joe])
+  it '#add_ride' do
+    @john.add_ride(@jaws.id)
+    
+    expect(@john.rides).to include(@jaws)
   end
 end
