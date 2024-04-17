@@ -4,6 +4,6 @@ class MechanicsController < ApplicationController
   # end
 
   def show
-
+    @mechanic = Mechanic.find(params[:name])
   end
 end
